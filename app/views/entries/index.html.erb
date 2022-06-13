@@ -1,14 +1,25 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :title do %>
 
-<h1>Entries</h1>
+<% end %>
 
-<div id="entries">
-  <% @entries.each do |entry| %>
-    <%= render entry %>
-    <p>
-      <%= link_to "Show this entry", entry %>
-    </p>
-  <% end %>
+<div class="columns mt-6 is-centered">
+<div class="column is-one-quarter">
+<div class="card">
+<header class="card-header">
+    <%= entry.meal_type %>
+</header>
+    <% @entries.each do |entry|%>
+    <%= entry.calories %>
+    <%= entry.proteins %>
+    <%= entry.carbohydrates %>
+    <%= entry.fats %>
+
+    <%= link_to "Show", entry %>
+    <%= link_to "Edit", edit_entry_path(entry) %>
+    <%= link_to "Destroy", entry, method: :delete, data: {confirm: "Are you sure?"} %>
+    </div>
+    <div>
+    <% end %>
 </div>
 
-<%= link_to "New entry", new_entry_path %>
+
