@@ -1,9 +1,9 @@
 class EntriesController < ApplicationController
   before_action :set_entry, only: %i[ show edit update destroy ]
 
-  # GET /entries or /entries.json
+
   def index
-    @entries = Entry.all
+    @entries = Entry.where("created_at >= ?", Date.today)
   end
 
   # GET /entries/1 or /entries/1.json
@@ -49,12 +49,13 @@ class EntriesController < ApplicationController
 
   # DELETE /entries/1 or /entries/1.json
   def destroy
+    @entry = Entry.find(params[:id])
     @entry.destroy
 
-    respond_to do |format|
-      format.html { redirect_to entries_url, notice: "Entry was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    # respond_to do |format|
+    #   format.html { redirect_to entries_url, notice: "Entry was successfully destroyed." }
+    #   format.json { head :no_content }
+    # end
   end
 
   private
