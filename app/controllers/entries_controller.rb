@@ -49,13 +49,12 @@ class EntriesController < ApplicationController
 
   # DELETE /entries/1 or /entries/1.json
   def destroy
-    @entry = Entry.find(params[:id])
     @entry.destroy
 
-    # respond_to do |format|
-    #   format.html { redirect_to entries_url, notice: "Entry was successfully destroyed." }
-    #   format.json { head :no_content }
-    # end
+    respond_to do |format|
+      format.html { redirect_to entries_url, notice: "Entry was successfully destroyed." }
+      format.json { head :no_content }
+    end
   end
 
   private
@@ -66,6 +65,6 @@ class EntriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def entry_params
-      params.require(:entry).permit(:meal_type, :calories, :proteins, :carbohydrates, :fats)
+      params.require(:entry).permit(:meal_type, :calories, :proteins, :carbohydrates, :fats, :category_id)
     end
 end

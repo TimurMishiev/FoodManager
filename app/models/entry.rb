@@ -1,5 +1,6 @@
 class Entry < ApplicationRecord
-  validates :meal_type, :fats, :carbohydrates, presence: true
+  belongs_to :category
+  validates :meal_type, :fats, :carbohydrates, :category_id, presence: true
   def day 
     self.created_at.strftime("%b %e, %Y")
   end 
